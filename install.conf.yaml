@@ -8,6 +8,7 @@
 #    ~/.vim: vim
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
+    ~/.gitconfig:
 
 - create:
     - ~/Work
