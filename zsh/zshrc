@@ -24,7 +24,10 @@ alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 
 
 # # change ZSH options #
-
+# Configureation of the shell's history
+HISTSIZE=10000
+SAVEHIST=150000
+HISTFILE=~/.zsh_history
 
 # # Create Aliases #
 # to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
@@ -32,6 +35,10 @@ alias ls='exa -halF --group-directories-first --sort extension'
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 
+alias ":q"="exit"
+
+alias lulz="lolcat"
+alias lll="ls -hAl | lolcat"
 
 # # customize prompt(s) #
 #
@@ -73,10 +80,85 @@ function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
 
+function dockershellhere() {
+	    dirname=${PWD##*/}
+	        docker run --rm -it --entrypoint=/bin/bash -v `pwd`:/${dirname} -w /${dirname} "$@"
+	}
+function dockershellshhere() {
+	    dirname=${PWD##*/}
+	        docker run --rm -it --entrypoint=/bin/sh -v `pwd`:/${dirname} -w /${dirname} "$@"
+	}
+function smbservehere() {
+	    local sharename
+	        [[ -z $1 ]] && sharename="SHARE" || sharename=$1
+		    docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
+	    }
 
 # # Use ZSH Plugins #
 
 
 # # ... and other surprises #
 
+##############
+# recreating a fish abbreviation expansion functionality
+##############
+# Adding the code required to add fish like abbreviation expansion declare a list of expandable aliases to fill up later
+# https://dev.to/frost/fish-style-abbreviations-in-zsh-40aa
+typeset -a ealiases
+ealiases=()
 
+# write a function for adding an alias to the list mentioned above
+function abbrev-alias() {
+	alias $1
+	ealiases+=(${1%%\=*})
+	}
+# expand any aliases in the current line buffer
+function expand-ealias() {
+	if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
+		zle _expand_alias
+		zle expand-word
+	fi
+	zle magic-space
+}
+zle -N expand-ealias
+
+# Bind the space key to the expand-alias function above, so that space will expand any expandable aliases
+bindkey ' '        expand-ealias
+bindkey '^ '       magic-space     # control-space to bypass completion
+bindkey -M isearch " "      magic-space     # normal space during searches
+
+# A function for expanding any aliases before accepting the line as is and executing the entered command
+expand-alias-and-accept-line() {
+	expand-ealias
+	zle .backward-delete-char
+	zle .accept-line
+}
+zle -N accept-line expand-alias-and-accept-line
+
+###############
+# Fish-style abbreviations
+###############
+
+#Generic system abbreviations
+#abbrev-alias ll="ls -hAlp"
+#abbrev-alias ld="ls -Ag |grep ' \.'"
+abbrev-alias myips="ip -c -brief -4 a"
+##abbrev-alias resrc="source ~/.zshrc"
+# for the gits :)
+abbrev-alias g="git"
+abbrev-alias gst="git status"
+abbrev-alias gcb="git checkout --branch"
+abbrev-alias gc="git clone" 
+# for the tmux's
+abbrev-alias t="tmux"
+abbrev-alias ta="tmux attach -t"
+abbrev-alias tls="tmux ls"
+abbrev-alias tn="tmux new -t"
+### Docker alias's ###
+abbrev-alias di="docker inspect"
+abbrev-alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"
+abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
+abbrev-alias impacket="docker run --rm -it rflathers/impacket"
+abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+
+#abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
