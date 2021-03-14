@@ -11,6 +11,10 @@ echo 'Hello from .zshrc'
 # ------------
 
 # # set variables #
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'" ### for osX or systems that use the bat program name
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
+## man 2 select ### and example line
+
 #Command-line tools - Fail-safe command aliases
 #• $AGENT[x] environment variable use with other commands:
 export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
