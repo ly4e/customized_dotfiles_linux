@@ -35,7 +35,8 @@ HISTFILE=~/.zsh_history
 
 # # Create Aliases #
 # to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
-alias ls='exa -halF --group-directories-first --sort extension'
+#alias ls='exa -halF --group-directories-first --sort extension'
+alias ls='exa -hlF --group-directories-first --sort extension'
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 
