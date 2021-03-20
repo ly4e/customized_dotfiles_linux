@@ -158,6 +158,8 @@ abbrev-alias g="git"
 abbrev-alias gst="git status"
 abbrev-alias gcb="git checkout --branch"
 abbrev-alias gc="git clone" 
+abbrev-alias gp="git push" 
+abbrev-alias gcam="git commit -am \""
 # for the tmux's
 abbrev-alias t="tmux"
 abbrev-alias ta="tmux attach -t"
