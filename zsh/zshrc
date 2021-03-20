@@ -45,6 +45,10 @@ alias ":q"="exit"
 alias lulz="lolcat"
 alias lll="ls -hAl | lolcat"
 
+# alias'ing tldr to a docker container verses installing it locally on the system
+# will want to make a similar non-priv container
+alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
+
 # # customize prompt(s) #
 #
 #User Configurations
