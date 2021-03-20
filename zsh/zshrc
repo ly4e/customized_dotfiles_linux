@@ -2,12 +2,10 @@ echo 'Hello from .zshrc'
 
 # ### items needing to be installed and various pre-req commands ###
 #   install exa, batcat, fd-find
-#
 # ------------
 ## sim link creations (so i don't have to remember) ##
 ##  ln -s <abs/relative path to real/src file/> <absolute or relative path to the fake, false, target item/> 
 #   ln -s ~/.dotfiles/zshrc ~/.zshrc
-#
 # ------------
 
 # # set variables #
@@ -15,47 +13,18 @@ echo 'Hello from .zshrc'
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
 ## man 2 select ### and example line
 
-#Command-line tools - Fail-safe command aliases
-#• $AGENT[x] environment variable use with other commands:
-export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-export AGENT2="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-export AGENT="$AGENT1"
-alias curl="curl -A '$AGENT'"
-alias wget="wget -U '$AGENT'"
-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
-##additionl example for wpscan
-##wpscan --ua "$AGENT" --url 127.0.0.1
-
-
-# # change ZSH options #
+# ## changing some of ZSH options ##
 # Configureation of the shell's history
 HISTSIZE=10000
 SAVEHIST=150000
 HISTFILE=~/.zsh_history
 
-# # Create Aliases #
-# to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
-#alias ls='exa -halF --group-directories-first --sort extension'
-alias ls='exa -hlF --group-directories-first --sort extension'
-alias rsrc="source ~/.zshrc"
-alias esrc="vim ~/.zshrc"
-
-alias ":q"="exit"
-
-alias lulz="lolcat"
-alias lll="ls -hAl | lolcat"
-
-# alias'ing tldr to a docker container verses installing it locally on the system
-# will want to make a similar non-priv container
-alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
-
-# # customize prompt(s) #
-#
-#User Configurations
+# ## customize prompt(s) ##
+# ### User Configurations ###
 autoload -U colors && colors
 setopt PROMPT_SUBST
 
-#Creating a fish like collapsed directory listing
+# ## Creating a fish like collapsed directory listing ##
 _fishy_collapsed_wd() {
     local i pwd
         pwd=("${(s:/:)PWD/#$HOME/~}")
@@ -81,10 +50,46 @@ PROMPT='
 
 #RPROMPT='%*'
 
-# # Add locations to $PATH Variables #
+
+# ## Use ZSH Plugins ##
 
 
-# # Handy Functions #
+
+
+
+# ## ... and other surprises ##
+
+
+
+
+
+# ## Add locations to $PATH Variables ##
+
+# something for my MacOS for later
+# Adding VSCode (code)
+# export PATH="$PATH:/Applications/Virtual Studio Code.app/Contents/Reseources/app/bin"
+
+
+
+
+
+
+#Command-line tools - Fail-safe command aliases
+# $AGENT[x] environment variable for use with other commands:
+export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+export AGENT2="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+export AGENT="$AGENT1"
+alias curl="curl -A '$AGENT'"
+alias wget="wget -U '$AGENT'"
+alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
+##additionl example for wpscan
+##wpscan --ua "$AGENT" --url 127.0.0.1
+
+
+
+
+
+# ## Handy Functions ##
 function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
@@ -101,12 +106,29 @@ function smbservehere() {
 	    local sharename
 	        [[ -z $1 ]] && sharename="SHARE" || sharename=$1
 		    docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
-	    }
-
-# # Use ZSH Plugins #
+	}
 
 
-# # ... and other surprises #
+
+
+
+
+# ## Additional  Aliases ##
+ # to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
+#alias ls='exa -halF --group-directories-first --sort extension'
+alias ls='exa -hlF --group-directories-first --sort extension'
+alias rsrc="source ~/.zshrc"
+alias esrc="vim ~/.zshrc"
+
+alias ":q"="exit"
+
+alias lulz="lolcat"
+alias lll="ls -hAl | lolcat"
+
+# alias'ing tldr to a docker container verses installing it locally on the system
+# will want to make a similar non-priv container
+alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
+
 
 ##############
 # recreating a fish abbreviation expansion functionality
