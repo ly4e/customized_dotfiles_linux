@@ -84,7 +84,7 @@ PROMPT='
 # # Add locations to $PATH Variables #
 
 
-# # Write Handy Functions #
+# # Handy Functions #
 function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
@@ -169,5 +169,6 @@ abbrev-alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"
 abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+abbrev-alias refreshgitkey="ssh-add ~/.ssh/id_ly4e_github"
 
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
