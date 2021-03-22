@@ -9,6 +9,10 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
     ~/.gitconfig:
+    ~/.config/bat:
+      create: true
+      path: bat 
+
 
 - create:
     - ~/Work
