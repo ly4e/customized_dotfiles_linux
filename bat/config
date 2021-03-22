@@ -4,14 +4,7 @@
 
 # Specify desired highlighting theme (e.g. "TwoDark"). Run `bat --list-themes`
 # for a list of all available themes
-#--theme="TwoDark"
-
-# Enable this to use italic text on the terminal. This is not supported on all
-# terminal emulators (like tmux, by default):
-#--italic-text=always
-
-# Uncomment the following line to disable automatic paging:
-#--paging=never
+--theme="TwoDark"
 
 # Uncomment the following line if you are using less version >= 551 and want to
 # enable mouse scrolling support in `bat` when running inside tmux. This might
@@ -23,3 +16,6 @@
 #   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
 #--map-syntax "*.ino:C++"
 #--map-syntax ".ignore:Git Ignore"
+--map-syntax "zshrc:bash" 
+--map-syntax "zshenv:bash"
+--map-syntax "Brewfile:bash"
