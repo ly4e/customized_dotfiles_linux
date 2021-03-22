@@ -10,8 +10,8 @@ echo 'Hello from .zshrc'
 
 # # set variables #
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'" ### for osX or systems that use the bat program name
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
-## man 2 select ### and example line
+#export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
+## man 2 select ### an example line
 export HOMEBREW_CASK_OPTS="--no-quarentine"
 
 
@@ -122,6 +122,8 @@ alias ls='exa -hlF --group-directories-first --sort extension'
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 
+alias man="batman"
+alias greg="batgrep"
 alias ":q"="exit"
 
 alias lulz="lolcat"
@@ -198,3 +200,6 @@ abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/
 abbrev-alias refreshgitkey="ssh-add ~/.ssh/id_ly4e_github"
 
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
+#
+## brew alias for MacOS
+# abbrev-alias bbd="brew bundle dump --force --describe"
