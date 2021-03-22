@@ -12,6 +12,8 @@ echo 'Hello from .zshrc'
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'" ### for osX or systems that use the bat program name
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
 ## man 2 select ### and example line
+export HOMEBREW_CASK_OPTS="--no-quarentine"
+
 
 # ## changing some of ZSH options ##
 # Configureation of the shell's history
