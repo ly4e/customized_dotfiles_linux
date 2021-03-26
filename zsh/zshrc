@@ -87,6 +87,9 @@ alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 ##additionl example for wpscan
 ##wpscan --ua "$AGENT" --url 127.0.0.1
 
+# setting environment variables to hold source and destination IPs for use in various efforts
+export sIP=127.27.27.27
+export tIP=127.111.111.111
 
 
 
