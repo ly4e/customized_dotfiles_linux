@@ -123,11 +123,11 @@ alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 
 alias man="batman"
-alias greg="batgrep"
+alias grep="batgrep"
 alias ":q"="exit"
 
 alias lulz="lolcat"
-alias lll="ls -hAl | lolcat"
+alias lll="exa -halF | lolcat"
 
 # alias'ing tldr to a docker container verses installing it locally on the system
 # will want to make a similar non-priv container
