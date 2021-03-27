@@ -12,17 +12,20 @@
     ~/.config/bat:
       create: true
       path: bat 
+    ~/.config/alacritty:
+      create: true
+      path: alacritty 
 
 
 - create:
     - ~/Work
 #    - ~/.vim/undo-history
 
-- shell:
-#  - [git submodule update --init --recursive, Installing submodules]
-    -
-      command: echo Enter variable value   && read var && echo Your variable is $var
-      stdin: true
-      stdout: true
-      description: Reading and printing variable
-      quiet: true
+##- shell:
+###  - [git submodule update --init --recursive, Installing submodules]
+##    -
+##      command: echo Enter variable value   && read var && echo Your variable is $var
+##      stdin: true
+##      stdout: true
+##      description: Reading and printing variable
+##      quiet: true
