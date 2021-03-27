@@ -125,6 +125,10 @@ alias ls='exa -hlF --group-directories-first --sort extension'
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 
+#Adding a temp command for screenkey version 1.4 where repo only provides v1.2. \
+#Version 1.4 allows for quick disabling of showing keys to allow for password typing when needed
+alias screenkey="~/Downloads/screenkey-1.4/screenkey"
+
 alias man="batman"
 alias grep="batgrep"
 alias ":q"="exit"
