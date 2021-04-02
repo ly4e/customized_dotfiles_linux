@@ -8,6 +8,7 @@
 #    ~/.vim: vim
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
+    ~/.zshenv: zsh/zshenv
     ~/.gitconfig:
     ~/.config/bat:
       create: true
@@ -22,6 +23,11 @@
 #    - ~/.vim/undo-history
 
 ##- shell:
+#    - 
+#     command: ./setup_homebrew.zsh
+#     stdout: true
+#     stderr: true
+#
 ###  - [git submodule update --init --recursive, Installing submodules]
 ##    -
 ##      command: echo Enter variable value   && read var && echo Your variable is $var

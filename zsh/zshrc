@@ -12,7 +12,6 @@ echo 'Hello from .zshrc'
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'" ### for osX or systems that use the bat program name
 #export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
 ## man 2 select ### an example line
-export HOMEBREW_CASK_OPTS="--no-quarentine"
 
 
 # ## changing some of ZSH options ##
@@ -72,10 +71,6 @@ PROMPT='
 # export PATH="$PATH:/Applications/Virtual Studio Code.app/Contents/Reseources/app/bin"
 
 
-
-
-
-
 #Command-line tools - Fail-safe command aliases
 # $AGENT[x] environment variable for use with other commands:
 export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
@@ -90,8 +85,6 @@ alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 # setting environment variables to hold source and destination IPs for use in various efforts
 export sIP=127.27.27.27
 export tIP=127.111.111.111
-
-
 
 
 # ## Handy Functions ##
