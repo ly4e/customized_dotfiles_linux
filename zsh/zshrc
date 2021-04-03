@@ -1,7 +1,7 @@
 echo 'Hello from .zshrc'
 
 # ### items needing to be installed and various pre-req commands ###
-#   install exa, batcat, fd-find
+#   install exa, batcat, fd-find, jq, fzf, peco, and zgenom (from github: git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom" ) OR zinit from https://github.com/zdharma/zinit
 # ------------
 ## sim link creations (so i don't have to remember) ##
 ##  ln -s <abs/relative path to real/src file/> <absolute or relative path to the fake, false, target item/> 
@@ -13,35 +13,101 @@ echo 'Hello from .zshrc'
 #export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
 ## man 2 select ### an example line
 
-
-# ## changing some of ZSH options ##
+#######################
+### History Configurations
+########################
 # Configuration of the shell's history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.zsh_history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
+## referenced: http://zsh.sourceforge.net/Doc/Release/Options.html  - for history setopts options
 #HIST_STAMPS="yyyy-mm-dd"
+setopt APPEND_HISTORY            # zsh sessions will append to the history file when they exit verses replacing it
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt SHARE_HISTORY             # Share history between all sessions.
-                                     ##INC_APPEND_HISTORY, INC_APPEND_HISTORY_TIME, & SHARE_HISTORY are mutually exclusive
-#setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits. 
+#setopt SHARE_HISTORY             # Share history between all sessions.
                                      ##INC_APPEND_HISTORY, INC_APPEND_HISTORY_TIME, & SHARE_HISTORY are mutually exclusive
 #setopt INC_APPEND_HISTORY_TIME   # Write to the history file after command completes, the time taken is also written to the history file.  
                                      ##INC_APPEND_HISTORY, INC_APPEND_HISTORY_TIME, & SHARE_HISTORY are mutually exclusive
-#setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-#setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-#setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-#setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
-#setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits. 
+                                     ##INC_APPEND_HISTORY, INC_APPEND_HISTORY_TIME, & SHARE_HISTORY are mutually exclusive
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+unsetopt HIST_BEEP                 # Beep when accessing nonexistent history.
 #setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 
+####################
+# load zgenom for ZSH plugin management
+####################
+# basing some of the load out below for zgenom based on https://github.com/unixorn/zsh-quickstart-kit
+
+source "${HOME}/.zgenom/zgenom.zsh"
+# if the init script doesn't exist
+if ! zgenom saved; then
+    # specify plugins here
+    zgenom oh-my-zsh
+    zgenom oh-my-zsh plugins/sudo
+#    zgenom oh-my-zsh plugins/git
+#    zgenom oh-my-zsh plugins/github
+#    zgenom oh-my-zsh plugins/tmux
+    zgenom oh-my-zsh plugins/python
+#    zgenom oh-my-zsh plugins/vagrant
+#    skx/sysadmin-util #- A collection of scripts useful for sysadmins.
+##    zgenom load webyneter/docker-aliases # has some better customer aliases ## lastupdated jun 8, 2020
+##    zgenom load srijanshetty/docker-zsh #- Adds completions for docker. ## lastupdated aug 2. 2013
+#       adds docker machine info to the prompt??? asuran/zsh-docker-machine OR MAYBE sroze/docker-compose-zsh-plugin
+#
+#    zgenom load stackexchange/blackbox #- Tom Limoncelli's tool for storing secret information in a repository with gnupg encryption,
+           ## automatically decrypting as needed. ---> something i want to look into <---
+    zgenom load unixorn/fzf-zsh-plugin #- This enables fzf-powered history search.
+#    unixorn/jpb.zshplugin #- Some of my standard aliases & functions.
+            #^^^ i like the above may want to fork then modify verses just loading the original
+            #something else to take inspiration from -> https://github.com/sathish09/zsh_plugins
+            #                   -> https://github.com/jhwohlgemuth/zsh-pentest
+    zgenom load zsh-autosuggestions #- Adds fish-like autosuggestions to your ZSH sessions.
+    zgenom load zsh-users/zsh-completions #- Tab completions for many more applications than come standard with ZSH.
+    zgenom load zsh-users/zsh-history-substring-search #- Better history search.
+    zgenom load zsh-users/zsh-syntax-highlighting #- Syntax highlighting as you type.
+
+    zgenom load MichaelAquilina/zsh-you-should-use  #loaded to help remember if or what aliases are already created
+    ##loaded for fun
+    zgenom load MichaelAquilina/zsh-emojis ## adds text based emojis with the prefix of "em_" so echo $em_* &| xsel -i -b
+    zgenom load b4b4r07/emoji-cli  ## could be hilarious to add for fun : regular emojis
+            ### oldratlee/hacker-quotes    
 
 
+    zgenom load unixorn/autoupdate-zgen #- Adds autoupdate (for both zgenom itself, and your plugins) to zgenom
+
+##if [ $(uname -a | grep -ci Darwin) = 1 ]; then
+#    # Load macOS-specific plugins
+#    zgenom oh-my-zsh plugins/brew
+#    zgenom oh-my-zsh plugins/osx
+##fi
+
+    # generate the init script from plugins above
+    zgenom save
+fi
+
+
+
+##########################
+## Removing unwanted aliases
+##########################
+
+#unalias gau # this removes the `git add --update 
+
+
+
+##################
 # ## customize prompt(s) ##
+##################
 # ### User Configurations ###
 autoload -U colors && colors
 setopt PROMPT_SUBST
@@ -121,8 +187,34 @@ function smbservehere() {
 		    docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
 	}
 
+#function google { #this function doesn't not function on linux be default where open is not defined
+#    open "https://www.google.com/search?q=$*"
+#}
 
+# from unixorn
+#function exists() {
+#    if (( $+commands[$1] )); then return 0; else return 1; fi
+#}
 
+# from cads@ooyala.com via unixorn
+function ff() {
+    find . -type f -iname '*'$@'*' -ls
+}
+
+## From commandlinefu.com
+#function watch() { 
+#   t=$1; shift; while test :; do clear; date=$(date); echo -e "Every $ts: $@ \t\t\t\t $date"; $@; sleep $t; done 
+#}
+
+## scp file to machine you're sshing into this machine from
+#function mecp() {
+#   scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
+#}
+
+## Probe a /24 for hosts
+#function scan24() {
+#   nmap -sP ${1}/24
+#}
 
 
 
@@ -138,7 +230,7 @@ alias esrc="vim ~/.zshrc"
 alias screenkey="~/Downloads/screenkey-1.4/screenkey"
 
 alias man="batman"
-alias grep="batgrep"
+#alias grep="batgrep"
 alias ":q"="exit"
 
 alias lulz="lolcat"
@@ -148,7 +240,9 @@ alias lll="exa -halF | lolcat"
 # will want to make a similar non-priv container
 alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
 
-
+# Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
+alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
+alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
 ##############
 # recreating a fish abbreviation expansion functionality
 ##############
@@ -213,9 +307,10 @@ abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
 
-abbrev-alias fixgitssh="eval $(ssh-agent -s) ; ssh-add ~/.ssh/id_ly4e_github"
+abbrev-alias fixgitssh="eval $(ssh-agent -s) ; ssh-add ${HOME}/.ssh/id_ly4e_github"
 
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
 #
 ## brew alias for MacOS
 # abbrev-alias bbd="brew bundle dump --force --describe"
+
