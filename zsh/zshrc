@@ -74,14 +74,13 @@ if ! zgenom saved; then
     zgenom load zsh-autosuggestions #- Adds fish-like autosuggestions to your ZSH sessions.
     zgenom load zsh-users/zsh-completions #- Tab completions for many more applications than come standard with ZSH.
     zgenom load zsh-users/zsh-history-substring-search #- Better history search.
-    zgenom load zsh-users/zsh-syntax-highlighting #- Syntax highlighting as you type.
-
+#    zgenom load zsh-users/zsh-syntax-highlighting #- Syntax highlighting as you type.
+    zgenom load zdharma/fast-syntax-highlighting #- This plugin provides syntax highlighting for the commands we type in the Terminal. In addition, when we’re typing a command, it’ll be highlighted in red if it’s invalid and in green, if it’s valid.
     zgenom load MichaelAquilina/zsh-you-should-use  #loaded to help remember if or what aliases are already created
     ##loaded for fun
-    zgenom load MichaelAquilina/zsh-emojis ## adds text based emojis with the prefix of "em_" so echo $em_* &| xsel -i -b
-    zgenom load b4b4r07/emoji-cli  ## could be hilarious to add for fun : regular emojis
-            ### oldratlee/hacker-quotes    
-
+#    zgenom load MichaelAquilina/zsh-emojis ## adds text based emojis with the prefix of "em_" so echo $em_* &| xsel -i -b
+#    zgenom load b4b4r07/emoji-cli  ## could be hilarious to add for fun : regular emojis
+#    zgenom load oldratlee/hacker-quotes    
 
     zgenom load unixorn/autoupdate-zgen #- Adds autoupdate (for both zgenom itself, and your plugins) to zgenom
 
@@ -131,20 +130,48 @@ _fishy_collapsed_wd() {
     echo "${(j:/:)pwd}"
 }
 
-# %L shows the $SHLVL (shell level) to help know how deep within shells one might be
-# %n == username
-# %m == machine name
-# %# == changes prompt if the shell is running with privs
-# can reference the following for additional options and details ### http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-PROMPT='
-%L 🙊🙈🙉 %{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%} %#>> '
 
+###########
+## Setting up MY feature rich prompt.....
+###########
+## %L shows the $SHLVL (shell level) to help know how deep within shells one might be
+## %n == username
+## %m == machine name
+## can reference the following for additional options and details ### http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+#   #PROMPT='
+#   #%L 🙊🙈🙉 %{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%} %#>> '
+set_prompt() {
+    PS1="
+%{$fg[green]%}%L 🙊🙈🙉 %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
+#%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
+# Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+PS1+="%{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%}"
+### Status Code
+##PROMPT+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
+# Git information in the prompt
+if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
+	PS1+=', '
+	PS1+="%{$fg[blue]%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)%{$reset_color%}"
+	if [ $(git status --short | wc -l) -gt 0 ]; then 
+		PS1+="%{$fg[red]%}+$(git status --short | wc -l | awk '{$1=$1};1')%{$reset_color%}"
+	fi
+fi
+### removing sudo section due to limiting the time allowed for sudo to be valid.
+#### this done by changing the `Defaults env_reset` in the etc\sudoers file to `Defaults env_reset, timestamp_timeout=1`
+#### the above changes the timeout to 1 minute verses teh default fo 15 minutes (ref:https://www.howtogeek.com/193811/how-to-change-how-long-sudo-waits-before-it-prompts-you-again/)
+#	# Sudo: https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
+#	CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+#	if [ ${CAN_I_RUN_SUDO} -gt 0 ]
+#	then
+#		PROMPT+=', '
+#		PROMPT+="%{$fg_bold[red]%}SUDO%{$reset_color%}"
+#	fi
+	PS1+="%{$fg[white]%}]: %{$reset_color%}"
+    PS1+="	
+🥳👓>> "
+}
 #RPROMPT='%*'
-
-
-# ## Use ZSH Plugins ##
-
-
+precmd_functions+=set_prompt
 # ## ... and other surprises ##
 
 
@@ -169,7 +196,6 @@ alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 # setting environment variables to hold source and destination IPs for use in various efforts
 export sIP=127.27.27.27
 export tIP=127.111.111.111
-
 
 # ## Handy Functions ##
 function mkcd() {
@@ -302,6 +328,8 @@ abbrev-alias gcb="git checkout --branch"
 abbrev-alias gc="git clone" 
 abbrev-alias gp="git push" 
 abbrev-alias gcam="git commit -am \""
+abbrev-alias gbl="git branch -l" 
+abbrev-alias gba="git branch -a" 
 # for the tmux's
 abbrev-alias t="tmux"
 abbrev-alias ta="tmux attach -t"
