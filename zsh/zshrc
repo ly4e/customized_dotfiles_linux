@@ -102,6 +102,9 @@ fi
 ##########################
 
 #unalias gau # this removes the `git add --update 
+unalias l
+unalias ll
+unalias lsa
 
 
 
@@ -173,6 +176,10 @@ function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
 
+function fixgitssh() {
+    eval $(ssh-agent -s) ;
+    ssh-add ${HOME}/.ssh/id_ly4e_github;
+}
 function dockershellhere() {
 	    dirname=${PWD##*/}
 	        docker run --rm -it --entrypoint=/bin/bash -v `pwd`:/${dirname} -w /${dirname} "$@"
@@ -255,7 +262,7 @@ ealiases=()
 function abbrev-alias() {
 	alias $1
 	ealiases+=(${1%%\=*})
-	}
+}
 # expand any aliases in the current line buffer
 function expand-ealias() {
 	if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
@@ -307,7 +314,6 @@ abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
 
-abbrev-alias fixgitssh="eval $(ssh-agent -s) ; ssh-add ${HOME}/.ssh/id_ly4e_github"
 
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
 #
