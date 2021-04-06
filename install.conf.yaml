@@ -5,7 +5,7 @@
 - clean: ['~']
 
 - link:
-#    ~/.vim: vim
+    ~/.vimrc: vim/vimrc
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
@@ -20,7 +20,7 @@
 
 - create:
     - ~/Work
-#    - ~/.vim/undo-history
+    - ~/.vim/undodir
 
 ##- shell:
 #    - 

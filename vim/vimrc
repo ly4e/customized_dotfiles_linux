@@ -1,0 +1,70 @@
+syntax on
+set background=dark
+set nocompatible
+filetype plugin on
+set noerrorbells
+set visualbell
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set relativenumber number
+set hidden
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set hlsearch
+set mouse=a
+set backspace=2 " backspace deletes like most other programs
+set autoread    " reload files changed outside vim
+set autowrite   " auto :w  before running a commands
+set nowrap
+" fixing vim  line wrapping ????
+" set ww=<,>,[,],h,l
+
+"set colorcolumn=80
+"highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+colorscheme elflord
+"" will require additional addins prior to working "
+" colorscheme molokai
+" colorscheme solarized
+
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'deus'
+      \ }
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-startify'
+
+Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-markdown'
+
+Plug 'ap/vim-css-color'
+Plug 'mbbill/undotree'
+Plug 'machakann/vim-highlightedyank'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'christoomey/vim-tmux-navigator'
+
+"Plug 'ycm-core/YouCompleteMe'
+"Plug 'neoclide/coc.nvim'
+"Plug 'junegunn/goyo.vim'
+call plug#end()
+
+

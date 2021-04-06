@@ -28,7 +28,7 @@ This tmux.conf file:
 alacritty.yml present provides a slightler larger font and a non-default color scheme
 
 ## VIM
-> notes to come
+vimrc containing some custom tweaks and plugin configurations
 
 ---
 ## _TBD_
