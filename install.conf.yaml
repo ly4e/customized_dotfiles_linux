@@ -23,7 +23,7 @@
     - ~/.vim/undodir
 
 ##- shell:
-    - command: zsh/setup_homebrew.zsh
+    - command: homebrew/setup_homebrew.zsh
       stdout: true
       stderr: true
 ###  - [git submodule update --init --recursive, Installing submodules]
