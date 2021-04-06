@@ -1,17 +1,12 @@
 echo 'Hello from .zshrc'
 
 # ### items needing to be installed and various pre-req commands ###
-#   install exa, batcat, fd-find, jq, fzf, peco, and zgenom (from github: git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom" ) OR zinit from https://github.com/zdharma/zinit
+#   install exa, batcat, bat-extra, fd-find, jq, fzf, peco, and zgenom (from github: git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom" )
 # ------------
-## sim link creations (so i don't have to remember) ##
+## sim link creation notes (so i don't have to remember) ##
 ##  ln -s <abs/relative path to real/src file/> <absolute or relative path to the fake, false, target item/> 
 #   ln -s ~/.dotfiles/zshrc ~/.zshrc
 # ------------
-
-# # set variables #
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'" ### for osX or systems that use the bat program name
-#export MANPAGER="sh -c 'col -bx | batcat -l man -p'" ### most debian or ubuntu systems will use batcat
-## man 2 select ### an example line
 
 #######################
 ### History Configurations
@@ -46,7 +41,7 @@ unsetopt HIST_BEEP                 # Beep when accessing nonexistent history.
 ####################
 # load zgenom for ZSH plugin management
 ####################
-# basing some of the load out below for zgenom based on https://github.com/unixorn/zsh-quickstart-kit
+# based some of the load out below for zgenom based on https://github.com/unixorn/zsh-quickstart-kit
 
 source "${HOME}/.zgenom/zgenom.zsh"
 # if the init script doesn't exist
@@ -77,24 +72,17 @@ if ! zgenom saved; then
 #    zgenom load zsh-users/zsh-syntax-highlighting #- Syntax highlighting as you type.
     zgenom load zdharma/fast-syntax-highlighting #- This plugin provides syntax highlighting for the commands we type in the Terminal. In addition, when we’re typing a command, it’ll be highlighted in red if it’s invalid and in green, if it’s valid.
     zgenom load MichaelAquilina/zsh-you-should-use  #loaded to help remember if or what aliases are already created
-    ##loaded for fun
-#    zgenom load MichaelAquilina/zsh-emojis ## adds text based emojis with the prefix of "em_" so echo $em_* &| xsel -i -b
-#    zgenom load b4b4r07/emoji-cli  ## could be hilarious to add for fun : regular emojis
-#    zgenom load oldratlee/hacker-quotes    
 
     zgenom load unixorn/autoupdate-zgen #- Adds autoupdate (for both zgenom itself, and your plugins) to zgenom
 
 ##if [ $(uname -a | grep -ci Darwin) = 1 ]; then
-#    # Load macOS-specific plugins
-#    zgenom oh-my-zsh plugins/brew
-#    zgenom oh-my-zsh plugins/osx
+##    # Load macOS-specific plugins
+##    zgenom oh-my-zsh plugins/brew
+##    zgenom oh-my-zsh plugins/osx
 ##fi
-
     # generate the init script from plugins above
     zgenom save
 fi
-
-
 
 ##########################
 ## Removing unwanted aliases
@@ -105,15 +93,11 @@ unalias l
 unalias ll
 unalias lsa
 
-
-
 ##################
-# ## customize prompt(s) ##
+# prompt setup part 1 ##
 ##################
-# ### User Configurations ###
 autoload -U colors && colors
 setopt PROMPT_SUBST
-
 # ## Creating a fish like collapsed directory listing ##
 _fishy_collapsed_wd() {
     local i pwd
@@ -129,10 +113,8 @@ _fishy_collapsed_wd() {
     fi
     echo "${(j:/:)pwd}"
 }
-
-
 ###########
-## Setting up MY feature rich prompt.....
+## Setting up MY feature rich prompt..... part 2
 ###########
 ## %L shows the $SHLVL (shell level) to help know how deep within shells one might be
 ## %n == username
@@ -146,8 +128,6 @@ set_prompt() {
 #%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
 # Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 PS1+="%{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%}"
-### Status Code
-##PROMPT+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
 # Git information in the prompt
 if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
 	PS1+=', '
@@ -172,17 +152,10 @@ fi
 }
 #RPROMPT='%*'
 precmd_functions+=set_prompt
-# ## ... and other surprises ##
 
-
-# ## Add locations to $PATH Variables ##
-
-# something for my MacOS for later
-# Adding VSCode (code)
-# export PATH="$PATH:/Applications/Virtual Studio Code.app/Contents/Reseources/app/bin"
-
-
-#Command-line tools - Fail-safe command aliases
+############
+# Command-line tools - Fail-safe command aliases
+############
 # $AGENT[x] environment variable for use with other commands:
 export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 export AGENT2="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
@@ -201,7 +174,14 @@ export tIP=127.111.111.111
 function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
-
+# from cads@ooyala.com via unixorn
+function ff() {
+    find . -type f -iname '*'$@'*' -ls
+}
+# Probe a /24 for hosts
+function scan24() {
+   nmap -sP ${1}/24
+}
 function fixgitssh() {
     eval $(ssh-agent -s) ;
     ssh-add ${HOME}/.ssh/id_ly4e_github;
@@ -209,73 +189,46 @@ function fixgitssh() {
 function dockershellhere() {
 	    dirname=${PWD##*/}
 	        docker run --rm -it --entrypoint=/bin/bash -v `pwd`:/${dirname} -w /${dirname} "$@"
-	}
+}
 function dockershellshhere() {
 	    dirname=${PWD##*/}
 	        docker run --rm -it --entrypoint=/bin/sh -v `pwd`:/${dirname} -w /${dirname} "$@"
-	}
+}
 function smbservehere() {
 	    local sharename
 	        [[ -z $1 ]] && sharename="SHARE" || sharename=$1
 		    docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
-	}
-
-#function google { #this function doesn't not function on linux be default where open is not defined
-#    open "https://www.google.com/search?q=$*"
-#}
-
-# from unixorn
-#function exists() {
-#    if (( $+commands[$1] )); then return 0; else return 1; fi
-#}
-
-# from cads@ooyala.com via unixorn
-function ff() {
-    find . -type f -iname '*'$@'*' -ls
+}
+# scp file to the machine you're sshing into this machine from
+function mecp() {
+   scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
 }
 
-## From commandlinefu.com
-#function watch() { 
-#   t=$1; shift; while test :; do clear; date=$(date); echo -e "Every $ts: $@ \t\t\t\t $date"; $@; sleep $t; done 
-#}
 
-## scp file to machine you're sshing into this machine from
-#function mecp() {
-#   scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
-#}
-
-## Probe a /24 for hosts
-#function scan24() {
-#   nmap -sP ${1}/24
-#}
-
-
-
-# ## Additional  Aliases ##
+##################
+# Additional  Aliases
+##################
  # to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
 alias la='exa -halF --group-directories-first --sort extension'
 alias ls='exa -hlF --group-directories-first --sort extension'
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
-
 #Adding a temp command for screenkey version 1.4 where repo only provides v1.2. \
 #Version 1.4 allows for quick disabling of showing keys to allow for password typing when needed
 alias screenkey="~/Downloads/screenkey-1.4/screenkey"
-
 alias man="batman"
-#alias grep="batgrep"
+alias grep="batgrep"
 alias ":q"="exit"
 
 alias lulz="lolcat"
 alias lll="exa -halF | lolcat"
-
 # alias'ing tldr to a docker container verses installing it locally on the system
 # will want to make a similar non-priv container
 alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
-
 # Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
 alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
+
 ##############
 # recreating a fish abbreviation expansion functionality
 ##############
@@ -283,7 +236,6 @@ alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
 # https://dev.to/frost/fish-style-abbreviations-in-zsh-40aa
 typeset -a ealiases
 ealiases=()
-
 # write a function for adding an alias to the list mentioned above
 function abbrev-alias() {
 	alias $1
@@ -298,12 +250,10 @@ function expand-ealias() {
 	zle magic-space
 }
 zle -N expand-ealias
-
 # Bind the space key to the expand-alias function above, so that space will expand any expandable aliases
 bindkey ' '        expand-ealias
 bindkey '^ '       magic-space     # control-space to bypass completion
 bindkey -M isearch " "      magic-space     # normal space during searches
-
 # A function for expanding any aliases before accepting the line as is and executing the entered command
 expand-alias-and-accept-line() {
 	expand-ealias
@@ -341,10 +291,9 @@ abbrev-alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"
 abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
-
-
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
-#
-## brew alias for MacOS
-# abbrev-alias bbd="brew bundle dump --force --describe"
 
+if [ $(uname -a | grep -ci Darwin) = 1 ]; then
+    ## brew alias for MacOS
+    abbrev-alias bbd="brew bundle dump --force --describe"
+fi
