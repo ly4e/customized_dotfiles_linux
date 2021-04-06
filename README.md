@@ -24,10 +24,13 @@ This tmux.conf file:
 - remapped prefix to to emulate "screen" 
 
 ---
+## Alacritty
+alacritty.yml present provides a slightler larger font and a non-default color scheme
+
 ## VIM
 > notes to come
 
 ---
 ## _TBD_
-- alacritty and or other items
+- other items
 
