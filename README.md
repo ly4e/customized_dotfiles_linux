@@ -10,20 +10,24 @@
 ---
 
 ## ZSH
-> notes to come
+This zshrc config file: 
+- leverages "zgenom" as its plugin manager
+- recreates a "fish" style abbreviated working directory
+- recreated "fish" style abbreviated aliases for the purpose of staying familair with the actual commands in case we end up on a system without our aliases
+- custom prompt includes git information enrichment and abbreviated working directories
 
 ---
+## TMUX
+This tmux.conf file:
+- leverages "tmux-resurrect" && "tmux-continuum" to assist in having tmux sessions persist thru a reboot
+- remapped command sequences for splitting screens
+- remapped prefix to to emulate "screen" 
 
+---
 ## VIM
 > notes to come
 
 ---
-
-## TMUX
-> notes to come
-
----
-
 ## _TBD_
 - alacritty and or other items
 
