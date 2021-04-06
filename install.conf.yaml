@@ -23,11 +23,9 @@
     - ~/.vim/undodir
 
 ##- shell:
-#    - 
-#     command: ./setup_homebrew.zsh
-#     stdout: true
-#     stderr: true
-#
+    - command: ./setup_homebrew.zsh
+      stdout: true
+      stderr: true
 ###  - [git submodule update --init --recursive, Installing submodules]
 ##    -
 ##      command: echo Enter variable value   && read var && echo Your variable is $var

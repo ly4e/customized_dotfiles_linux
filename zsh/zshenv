@@ -1,6 +1,9 @@
-export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
 export N_PREFIX="$HOME/.n"
 export PREFIX="$N_PREFIX"
+
+if [ $(uname -a | grep -ci Darwin) = 1 ]; then
+    export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
+fi
 
 
 function exists() {

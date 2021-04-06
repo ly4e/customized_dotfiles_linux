@@ -38,6 +38,9 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 unsetopt HIST_BEEP                 # Beep when accessing nonexistent history.
 #setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 
+setopt AUTOCD                    # this option, you can simply type the name of a directory, and it will become the current directory.
+setopt globDots                  # lets  files beginning with a . be matched without explicitly specifying the dot
+
 ####################
 # load zgenom for ZSH plugin management
 ####################
@@ -208,16 +211,23 @@ function mecp() {
 ##################
 # Additional  Aliases
 ##################
- # to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
-alias la='exa -halF --group-directories-first --sort extension'
-alias ls='exa -hlF --group-directories-first --sort extension'
+# to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
+if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
+    ## brew alias for MacOS
+    alias la='exa -halF --group-directories-first --sort extension'
+    alias ls='exa -hlF --group-directories-first --sort extension'
+    else
+    alias la='exa -halF --group-directories-first --sort extension --git'
+    alias ls='exa -hlF --group-directories-first --sort extension --git'
+fi
+
 alias rsrc="source ~/.zshrc"
 alias esrc="vim ~/.zshrc"
 #Adding a temp command for screenkey version 1.4 where repo only provides v1.2. \
 #Version 1.4 allows for quick disabling of showing keys to allow for password typing when needed
 alias screenkey="~/Downloads/screenkey-1.4/screenkey"
 alias man="batman"
-alias grep="batgrep"
+#alias grep="batgrep" #batgrep appears to not have full parity with grep thus causing issues at times
 alias ":q"="exit"
 
 alias lulz="lolcat"
@@ -293,7 +303,7 @@ abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
 
-if [ $(uname -a | grep -ci Darwin) = 1 ]; then
+if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
     ## brew alias for MacOS
     abbrev-alias bbd="brew bundle dump --force --describe"
 fi
