@@ -274,7 +274,7 @@ abbrev-alias myips="ip -c -brief -4 a"
 # for the gits :)
 abbrev-alias g="git"
 abbrev-alias gst="git status"
-abbrev-alias gcb="git checkout --branch"
+abbrev-alias gcb="git checkout -b"
 abbrev-alias gc="git clone" 
 abbrev-alias gp="git push" 
 abbrev-alias gcam="git commit -am \""
