@@ -4,7 +4,7 @@
 > Goal: To increase the repeatability of the configuration of custom settings
 
 * integrated this with `dotbot` more can be learned here [https://github.com/anishathalye/dotbot]
-* To start your own dotfiles journey feel free to take a look at [https://www.udemy.com/course/dotfiles-from-start-to-finish-ish/] 
+* To start your own dotfiles journey feel free to take a look at [http://dotfiles.eieio.xyz/] 
     The above course is where i took the inspiration to start over with my zshrc file and see about creating something more trimmed.
 
 ---
