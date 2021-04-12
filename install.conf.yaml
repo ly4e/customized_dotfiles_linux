@@ -22,7 +22,7 @@
     - ~/Work
     - ~/.vim/undodir
 
-##- shell:
+- shell:
     - command: homebrew/setup_homebrew.zsh
       stdout: true
       stderr: true

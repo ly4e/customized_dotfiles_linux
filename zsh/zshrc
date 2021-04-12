@@ -163,9 +163,6 @@ precmd_functions+=set_prompt
 export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 export AGENT2="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 export AGENT="$AGENT1"
-alias curl="curl -A '$AGENT'"
-alias wget="wget -U '$AGENT'"
-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 ##additionl example for wpscan
 ##wpscan --ua "$AGENT" --url 127.0.0.1
 
@@ -302,6 +299,9 @@ abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
 #abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
+abbrev-alias curl="curl -A '$AGENT'"
+abbrev-alias wget="wget -U '$AGENT'"
+abbrev-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
 
 if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
     ## brew alias for MacOS
