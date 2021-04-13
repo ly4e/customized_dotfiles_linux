@@ -25,6 +25,15 @@
     - command: homebrew/setup_homebrew.zsh
       stdout: true
       stderr: true
+- shell:
+    - command: zsh/setup_zgenom_4_zsh.zsh
+      stdout: true
+      stderr: true
+- shell:
+    - command: tmux/setup_tpm_4_tmux.zsh
+      stdout: true
+      stderr: true
+
 ###  - [git submodule update --init --recursive, Installing submodules]
 ##    -
 ##      command: echo Enter variable value   && read var && echo Your variable is $var

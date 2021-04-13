@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 if [ $(uname -a | grep -ci Darwin) = 1 ]; then
 
-  echo "\n<<< Starting Homebrew Setup >>>\n"
+  echo "\n<<< Starting Homebrew Setup 4 MacOS >>>\n"
 
   if exists brew; then
     echo "brew exists, skipping install"
