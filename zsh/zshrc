@@ -87,14 +87,6 @@ if ! zgenom saved; then
     zgenom save
 fi
 
-##########################
-## Removing unwanted aliases
-##########################
-
-#unalias gau # this removes the `git add --update 
-unalias l
-unalias ll
-unalias lsa
 
 ##################
 # prompt setup part 1 ##
@@ -204,38 +196,6 @@ function mecp() {
    scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
 }
 
-
-##################
-# Additional  Aliases
-##################
-# to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
-if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
-    ## brew alias for MacOS
-    alias la='exa -halF --group-directories-first --sort extension'
-    alias ls='exa -hlF --group-directories-first --sort extension'
-    else
-    alias la='exa -halF --group-directories-first --sort extension --git'
-    alias ls='exa -hlF --group-directories-first --sort extension --git'
-fi
-
-alias rsrc="source ~/.zshrc"
-alias esrc="vim ~/.zshrc"
-#Adding a temp command for screenkey version 1.4 where repo only provides v1.2. \
-#Version 1.4 allows for quick disabling of showing keys to allow for password typing when needed
-alias screenkey="~/Downloads/screenkey-1.4/screenkey"
-alias man="batman"
-#alias grep="batgrep" #batgrep appears to not have full parity with grep thus causing issues at times
-alias ":q"="exit"
-
-alias lulz="lolcat"
-alias lll="exa -halF | lolcat"
-# alias'ing tldr to a docker container verses installing it locally on the system
-# will want to make a similar non-priv container
-alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
-# Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
-alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
-alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
-
 ##############
 # recreating a fish abbreviation expansion functionality
 ##############
@@ -269,41 +229,91 @@ expand-alias-and-accept-line() {
 }
 zle -N accept-line expand-alias-and-accept-line
 
+##########################
+## Removing unwanted aliases
+##########################
+
+#unalias gau # this removes the `git add --update 
+unalias l
+unalias ll
+unalias lsa
+
+##################
+# Adding Custom Aliases
+##################
+# to use original command if alias overwrites the name use `command <ls>` to invoke the original ls
+if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
+    # for use on linux systems where the `--git` isn't a functioning features of exa "currently"
+    alias la='exa -halF --group-directories-first --sort extension'
+    alias ls='exa -hlF --group-directories-first --sort extension'
+    else
+    # for use on MacOS
+    alias la='exa -halF --group-directories-first --sort extension --git'
+    alias ls='exa -hlF --group-directories-first --sort extension --git'
+fi
+if exists batman; then
+    alias man="batman"
+fi
+#alias grep="batgrep" #batgrep appears to not have full parity with grep thus causing issues at times
+
+alias rsrc="source ~/.zshrc"
+alias esrc="vim ~/.zshrc"
+#Adding a temp command for screenkey version 1.4 where repo only provides v1.2. \
+#Version 1.4 allows for quick disabling of showing keys to allow for password typing when needed
+alias screenkey="~/Downloads/screenkey-1.4/screenkey"
+
+alias ":q"="exit"
+alias lulz="lolcat"
+alias lll="exa -halF | lolcat"
+# alias'ing tldr to a docker container verses installing it locally on the system
+# will want to make a similar non-priv container
+alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
+# Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
+alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
+alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
+
 ###############
-# Fish-style abbreviations
+# Fish-style Abbreviations/Aliases
 ###############
 
-#Generic system abbreviations
-#abbrev-alias ll="ls -hAlp"
-#abbrev-alias ld="ls -Ag |grep ' \.'"
-abbrev-alias myips="ip -c -brief -4 a"
-##abbrev-alias resrc="source ~/.zshrc"
+### Generic system abbreviations ###
+
+abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
+abbrev-alias curl="curl -A '$AGENT'"
+abbrev-alias wget="wget -U '$AGENT'"
+abbrev-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
+
+if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
+    #for linux systems IF fails use `hostname -i`
+    abbrev-alias myips="ip -c -brief -4 a"  
+    else
+    # for use on MacOS where `ip` is not available by default
+    abbrev-alias myips='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\ -f2'
+fi
+if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
+    ## brew alias for MacOS
+    abbrev-alias bbd="brew bundle dump --force --describe"
+fi
+
 # for the gits :)
 abbrev-alias g="git"
 abbrev-alias gst="git status"
 abbrev-alias gcb="git checkout -b"
-abbrev-alias gc="git clone" 
-abbrev-alias gp="git push" 
+abbrev-alias gc="git clone"
+abbrev-alias gp="git push"
 abbrev-alias gcam="git commit -am \""
-abbrev-alias gbl="git branch -l" 
-abbrev-alias gba="git branch -a" 
+abbrev-alias gbl="git branch -l"
+abbrev-alias gba="git branch -a"
+
 # for the tmux's
 abbrev-alias t="tmux"
 abbrev-alias ta="tmux attach -t"
 abbrev-alias tls="tmux ls"
 abbrev-alias tn="tmux new -t"
+
 ### Docker alias's ###
 abbrev-alias di="docker inspect"
 abbrev-alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"
 abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
-#abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
-abbrev-alias curl="curl -A '$AGENT'"
-abbrev-alias wget="wget -U '$AGENT'"
-abbrev-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
-
-if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
-    ## brew alias for MacOS
-    abbrev-alias bbd="brew bundle dump --force --describe"
-fi

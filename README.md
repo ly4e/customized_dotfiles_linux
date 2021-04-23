@@ -15,6 +15,7 @@ This zshrc config file:
 - recreates a "fish" style abbreviated working directory
 - recreated "fish" style abbreviated aliases for the purpose of staying familair with the actual commands in case we end up on a system without our aliases
 - custom prompt includes git information enrichment and abbreviated working directories
+- added logic (where identified) to set the correct aliases based on the system type the confi lices on 
 
 ---
 ## TMUX
@@ -33,4 +34,3 @@ vimrc containing some custom tweaks and plugin configurations
 ---
 ## _TBD_
 - other items
-
