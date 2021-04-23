@@ -288,7 +288,7 @@ if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
     abbrev-alias myips="ip -c -brief -4 a"  
     else
     # for use on MacOS where `ip` is not available by default
-    abbrev-alias myips='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\ -f2'
+    abbrev-alias myips='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
 fi
 if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
     ## brew alias for MacOS
