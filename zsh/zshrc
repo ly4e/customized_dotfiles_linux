@@ -191,6 +191,24 @@ function smbservehere() {
 	        [[ -z $1 ]] && sharename="SHARE" || sharename=$1
 		    docker run --rm -it -p 445:445 -v "${PWD}:/tmp/serve" rflathers/impacket smbserver.py -smb2support $sharename /tmp/serve
 }
+function zapme() {
+    docker network create zapnet ;
+    docker run -u zap -p 8080:8080 -p 8090:8090 --net zapnet -i owasp/zap2docker-weekly zap-webswing.sh
+}
+function zapitquick () {
+    docker network create zapnet ;
+    docker run --rm --net zapnet -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py -t "$@" -r report_.html
+
+}
+function zapitlong () {
+    docker network create zapnet ;
+    docker run --rm --net zapnet -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t "$@" -r report_.html
+
+}
+function juiceme() {
+    docker network create zapnet ;
+    docker run --rm -p 3000:3000 --net zapnet bkimminich/juice-shop
+}
 # scp file to the machine you're sshing into this machine from
 function mecp() {
    scp "$@" ${SSH_CLIENT%% *}:~/Downloads/;
@@ -294,6 +312,11 @@ if [ "$(uname -a | grep -ci Darwin)" != "0" ]; then
     ## brew alias for MacOS
     abbrev-alias bbd="brew bundle dump --force --describe"
 fi
+
+# simplifying the copying commands and output to xclip
+abbrev-alias xc=" xclip -selection clipboard"
+abbrev-alias xct=" tee /dev/tty | xclip -selection clipboard"
+
 
 # for the gits :)
 abbrev-alias g="git"
