@@ -34,3 +34,9 @@ vimrc containing some custom tweaks and plugin configurations
 ---
 ## _TBD_
 - other items
+
+---
+# Other Todos
+- update to include/fix zgenom installation for (MacOS usage -expanded scope)
+    `git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"`
+
