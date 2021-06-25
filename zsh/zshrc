@@ -1,7 +1,8 @@
 echo 'Hello from .zshrc'
 
 # ### items needing to be installed and various pre-req commands ###
-#   install exa, batcat, bat-extra, fd-find, jq, fzf, peco, and zgenom (from github: git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom" )
+#   install exa, batcat, bat-extra, fd-find, jq, fzf, peco, 
+#   and zgenom (from github: git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom" )
 # ------------
 ## sim link creation notes (so i don't have to remember) ##
 ##  ln -s <abs/relative path to real/src file/> <absolute or relative path to the fake, false, target item/> 
@@ -289,6 +290,7 @@ alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
 # Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
 alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
+alias trail='<<<${(F)path}'
 
 ###############
 # Fish-style Abbreviations/Aliases
