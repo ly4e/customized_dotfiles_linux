@@ -7,6 +7,8 @@ tap "homebrew/core"
 brew "bat"
 # Text-based window manager and terminal multiplexer
 brew "byobu"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Open source programming language to build simple/reliable/efficient software
@@ -19,6 +21,8 @@ brew "exa"
 brew "exiftool"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Banner-like program prints strings as ASCII art
+brew "figlet"
 # Command-line JSON processing tool
 brew "fx"
 # Command-line fuzzy finder written in Go
@@ -37,10 +41,16 @@ brew "hugo"
 brew "jid"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Rainbows and unicorns in your console!
+brew "lolcat"
 # Mac App Store command-line interface
 brew "mas"
+# Statically typed compiled systems programming language
+brew "nim"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
+# Command-line player for https://pandora.com
+brew "pianobar"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.8"
 # Cross-shell prompt for astronauts
@@ -55,6 +65,8 @@ cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Free, open-source and secure video conferencing app
+cask "jitsi-meet"
 # App to write, plan, collaborate, and get organized
 cask "notion"
 # Command-line shell and scripting language
@@ -65,21 +77,5 @@ cask "spectacle"
 cask "sublime-text"
 # Development environment
 cask "vagrant"
+# Gives Vagrant VMware plugin access to various VMware functionalities
 cask "vagrant-vmware-utility"
-mas "1Password 7", id: 1333542190
-mas "Bear", id: 1091189122
-mas "Bitwarden", id: 1352778147
-mas "Cardhop", id: 1290358394
-mas "DaisyDisk", id: 411643860
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Monosnap", id: 540348655
-mas "Notability", id: 360593530
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Slack", id: 803453959
-mas "Snappy", id: 512617038
-mas "Sorted", id: 1306893526
-mas "TickTick", id: 966085870
-mas "Xcode", id: 497799835

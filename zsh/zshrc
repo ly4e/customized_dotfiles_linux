@@ -64,7 +64,7 @@ if ! zgenom saved; then
 #
 #    zgenom load stackexchange/blackbox #- Tom Limoncelli's tool for storing secret information in a repository with gnupg encryption,
            ## automatically decrypting as needed. ---> something i want to look into <---
-    zgenom load unixorn/fzf-zsh-plugin #- This enables fzf-powered history search.
+#    zgenom load unixorn/fzf-zsh-plugin #- This enables fzf-powered history search.
 #    unixorn/jpb.zshplugin #- Some of my standard aliases & functions.
             #^^^ i like the above may want to fork then modify verses just loading the original
             #something else to take inspiration from -> https://github.com/sathish09/zsh_plugins
