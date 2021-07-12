@@ -301,7 +301,8 @@ alias trail='<<<${(F)path}'
 abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
 abbrev-alias curl="curl -A '$AGENT'"
 abbrev-alias wget="wget -U '$AGENT'"
-abbrev-alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
+abbrev-alias nmapa="nmap --script-args=\"http.useragent='$AGENT'\""
+abbrev-alias nmapf="nmap -sC -sV "
 
 if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
     #for linux systems IF fails use `hostname -i`
