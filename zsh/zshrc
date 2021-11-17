@@ -53,6 +53,7 @@ if ! zgenom saved; then
     # specify plugins here
     zgenom oh-my-zsh
     zgenom oh-my-zsh plugins/sudo
+    zgenom oh-my-zsh plugins/docker
 #    zgenom oh-my-zsh plugins/git
 #    zgenom oh-my-zsh plugins/github
 #    zgenom oh-my-zsh plugins/tmux
@@ -74,7 +75,7 @@ if ! zgenom saved; then
     zgenom load zsh-users/zsh-completions #- Tab completions for many more applications than come standard with ZSH.
     zgenom load zsh-users/zsh-history-substring-search #- Better history search.
 #    zgenom load zsh-users/zsh-syntax-highlighting #- Syntax highlighting as you type.
-    zgenom load zdharma/fast-syntax-highlighting #- This plugin provides syntax highlighting for the commands we type in the Terminal. In addition, when we’re typing a command, it’ll be highlighted in red if it’s invalid and in green, if it’s valid.
+    zgenom load zdharma-continuum/fast-syntax-highlighting #- This plugin provides syntax highlighting for the commands we type in the Terminal. In addition, when we’re typing a command, it’ll be highlighted in red if it’s invalid and in green, if it’s valid.
     zgenom load MichaelAquilina/zsh-you-should-use  #loaded to help remember if or what aliases are already created
 
     zgenom load unixorn/autoupdate-zgen #- Adds autoupdate (for both zgenom itself, and your plugins) to zgenom
@@ -120,7 +121,7 @@ _fishy_collapsed_wd() {
 #   #%L 🙊🙈🙉 %{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%} %#>> '
 set_prompt() {
     PS1="
-%{$fg[green]%}%L 🙊🙈🙉 %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
+%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
 #%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
 # Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 PS1+="%{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%}"
