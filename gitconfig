@@ -1,3 +1,4 @@
-[user]
-	name = ly4e
-	email = 32944964+ly4e@users.noreply.github.com
+[include]
+        path = ~/.git-personal.conf
+[includeIf "gitdir:~/work/"]
+        path = ~/.git-work.conf

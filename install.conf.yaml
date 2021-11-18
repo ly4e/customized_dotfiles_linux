@@ -10,6 +10,8 @@
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
     ~/.gitconfig:
+    ~/.git-work.conf:
+    ~/.git-personal.conf:
     ~/.config/bat:
       create: true
       path: bat 
@@ -20,6 +22,7 @@
 
 - create:
     - ~/.vim/undodir
+    - ~/work
 
 - shell:
     - command: homebrew/setup_homebrew.zsh
