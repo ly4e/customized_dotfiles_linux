@@ -321,6 +321,9 @@ fi
 abbrev-alias xc=" xclip -selection clipboard"
 abbrev-alias xct=" tee /dev/tty | xclip -selection clipboard"
 
+# abbreviations for ssh
+# precusor command: "eval $(ssh-agent)"
+abbrev-alias ssha="ssh-add "
 
 # for the gits :)
 abbrev-alias g="git"
