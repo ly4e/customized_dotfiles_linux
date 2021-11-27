@@ -176,7 +176,7 @@ function ff() {
 function scan24() {
    nmap -sP ${1}/24
 }
-function fixgitssh() {
+function gitfixssh() {
     eval $(ssh-agent -s) ;
     ssh-add ${HOME}/.ssh/id_ly4e_github;
 }
