@@ -322,8 +322,9 @@ abbrev-alias xc=" xclip -selection clipboard"
 abbrev-alias xct=" tee /dev/tty | xclip -selection clipboard"
 
 # abbreviations for ssh
-# precusor command: "eval $(ssh-agent)"
-abbrev-alias ssha="ssh-add "
+# precusor command: "eval $(ssh-agent -s)"
+abbrev-alias ssha='eval $(ssh-agent -s) && ssh-add '
+abbrev-alias gitcheck='ssh -T git@github.com'
 
 # for the gits :)
 abbrev-alias g="git"
