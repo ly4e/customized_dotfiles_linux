@@ -304,6 +304,7 @@ abbrev-alias curl="curl -A '$AGENT'"
 abbrev-alias wget="wget -U '$AGENT'"
 abbrev-alias nmapa="nmap --script-args=\"http.useragent='$AGENT'\""
 abbrev-alias nmapf="nmap -sC -sV "
+abbrev-alias nmapps="nmap -sn "
 
 if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
     #for linux systems IF fails use `hostname -i`
@@ -348,3 +349,6 @@ abbrev-alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"
 abbrev-alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
 abbrev-alias impacket="docker run --rm -it rflathers/impacket"
 abbrev-alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+
+abbrev-alias wpscan='docker container run -it --rm wpscanteam/wpscan '
+abbrev-alias rustscan='docker container run -it --rm --name rustscan rustscan/rustscan '
