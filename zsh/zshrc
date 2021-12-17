@@ -298,7 +298,6 @@ alias trail='<<<${(F)path}'
 ###############
 
 ### Generic system abbreviations ###
-
 abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
 abbrev-alias curla="curl -A '$AGENT'"
 abbrev-alias wgeta="wget -U '$AGENT'"
@@ -326,6 +325,7 @@ abbrev-alias xct=" tee /dev/tty | xclip -selection clipboard"
 # precusor command: "eval $(ssh-agent -s)"
 abbrev-alias ssha='eval $(ssh-agent -s) && ssh-add '
 abbrev-alias gitcheck='ssh -T git@github.com'
+abbrev-alias gitwhoami='git config user.name'
 
 # for the gits :)
 abbrev-alias g="git"
