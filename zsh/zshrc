@@ -285,9 +285,6 @@ alias screenkey="~/Downloads/screenkey-1.4/screenkey"
 alias ":q"="exit"
 alias lulz="lolcat"
 alias lll="exa -halF | lolcat"
-# alias'ing tldr to a docker container verses installing it locally on the system
-# will want to make a similar non-priv container
-alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'
 # Strip color codes from commands that insist on spewing them so we can pipe them into files cleanly.
 alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 alias tflip='echo "(╯°□°)╯︵ ┻━┻"'
