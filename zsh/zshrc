@@ -301,17 +301,16 @@ alias trail='<<<${(F)path}'
 ###############
 
 ### Generic system abbreviations ###
-
 abbrev-alias fzf_dot='rg --files --hidden -g "\!.git" | fzf' 
-abbrev-alias curl="curl -A '$AGENT'"
-abbrev-alias wget="wget -U '$AGENT'"
+abbrev-alias curla="curl -A '$AGENT'"
+abbrev-alias wgeta="wget -U '$AGENT'"
 abbrev-alias nmapa="nmap --script-args=\"http.useragent='$AGENT'\""
 abbrev-alias nmapf="nmap -sC -sV "
 abbrev-alias nmapps="nmap -sn "
 
 if [ "$(uname -a | grep -ci Darwin)" = "0" ]; then
     #for linux systems IF fails use `hostname -i`
-    abbrev-alias myips="ip -c -brief -4 a"  
+    abbrev-alias myips="ip -c -br -4 a"  
     else
     # for use on MacOS where `ip` is not available by default
     abbrev-alias myips='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
@@ -329,6 +328,7 @@ abbrev-alias xct=" tee /dev/tty | xclip -selection clipboard"
 # precusor command: "eval $(ssh-agent -s)"
 abbrev-alias ssha='eval $(ssh-agent -s) && ssh-add '
 abbrev-alias gitcheck='ssh -T git@github.com'
+abbrev-alias gitwhoami='git config user.name'
 
 # for the gits :)
 abbrev-alias g="git"
