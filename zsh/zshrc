@@ -123,8 +123,8 @@ _fishy_collapsed_wd() {
 #   #%L 🙊🙈🙉 %{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%} %#>> '
 set_prompt() {
     PS1="
-#%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}myBox %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
 %{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
+#%{$fg[green]%}%L 🙊🙈🙉%{$reset_color%}@%{$fg[cyan]%}myBox %{$reset_color%}%{$fg[white]%}[%{$reset_color%}"
 # Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 PS1+="%{$fg_bold[cyan]%}$(_fishy_collapsed_wd)%{$reset_color%}"
 # Git information in the prompt
