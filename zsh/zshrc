@@ -156,8 +156,9 @@ precmd_functions+=set_prompt
 # Command-line tools - Fail-safe command aliases
 ############
 # $AGENT[x] environment variable for use with other commands:
-export AGENT1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+export AGENT1="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 export AGENT2="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+export AGENT3="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 export AGENT="$AGENT1"
 ##additionl example for wpscan
 ##wpscan --ua "$AGENT" --url 127.0.0.1
