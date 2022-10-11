@@ -182,6 +182,7 @@ function scan24() {
 function gitfixssh() {
     eval $(ssh-agent -s) ;
     ssh-add ${HOME}/.ssh/id_ly4e_github;
+    ssh-add ${HOME}/.ssh/corp_github_ed25519;
 }
 function dockershellhere() {
 	    dirname=${PWD##*/}

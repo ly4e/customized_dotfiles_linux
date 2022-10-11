@@ -1,4 +1,6 @@
 [include]
         path = ~/.git-personal.conf
+#[include "gitdir:~/personal/"]
+#        path = ~/.git-personal.conf
 [includeIf "gitdir:~/work/"]
         path = ~/.git-work.conf
