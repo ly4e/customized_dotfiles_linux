@@ -7,20 +7,20 @@ tap "homebrew/core"
 brew "glib"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Icons for the GNOME project
 brew "adwaita-icon-theme"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Linux/OSX/FreeBSD resource monitor
 brew "bpytop"
+# CLI tool for Amazon ECS and AWS Fargate
+brew "copilot"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Open source programming language to build simple/reliable/efficient software
@@ -33,16 +33,30 @@ brew "exa"
 brew "exiftool"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# Secure Reliable Transport
+brew "srt"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg@4"
 # Banner-like program prints strings as ASCII art
 brew "figlet"
+# X11 implementation of the Remote Desktop Protocol (RDP)
+brew "freerdp"
 # Terminal JSON viewer
 brew "fx"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Distributed revision control system
 brew "git"
+# GSettings schemas for desktop components
+brew "gsettings-desktop-schemas"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
 # Improved top (interactive process viewer)
@@ -59,6 +73,8 @@ brew "jq"
 brew "lolcat"
 # Mac App Store command-line interface
 brew "mas"
+# HTTP/2 C Library
+brew "nghttp2"
 # Statically typed compiled systems programming language
 brew "nim"
 # Port scanning utility for large networks
