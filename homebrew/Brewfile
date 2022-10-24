@@ -113,8 +113,6 @@ cask "powershell"
 cask "royal-tsx"
 # Plugin for AWS CLI to start and end sessions that connect to managed instances
 cask "session-manager-plugin"
-# Move and resize windows with ease
-cask "spectacle"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # Development environment
