@@ -1,3 +1,4 @@
+tap "aws/tap"
 tap "eth-p/software"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -19,8 +20,6 @@ brew "awscli"
 brew "bat"
 # Linux/OSX/FreeBSD resource monitor
 brew "bpytop"
-# CLI tool for Amazon ECS and AWS Fargate
-brew "copilot"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Open source programming language to build simple/reliable/efficient software
@@ -87,14 +86,14 @@ brew "packer"
 brew "pianobar"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.8"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Simplified and community-driven man pages
 brew "tldr"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Copilot CLI - build, release and operate your container apps on AWS
+brew "aws/tap/copilot-cli"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
 # Developer targeted fonts with a high number of glyphs
@@ -108,6 +107,10 @@ cask "jitsi-meet"
 cask "notion"
 # Command-line shell and scripting language
 cask "powershell"
+# Remote management solution
+cask "royal-tsx"
+# Plugin for AWS CLI to start and end sessions that connect to managed instances
+cask "session-manager-plugin"
 # Move and resize windows with ease
 cask "spectacle"
 # Text editor for code, markup and prose
@@ -122,8 +125,8 @@ mas "Bitwarden", id: 1352778147
 mas "Cardhop", id: 1290358394
 mas "DaisyDisk", id: 411643860
 mas "Greenshot", id: 1103915944
-mas "iMovie", id: 408981434
-mas "Microsoft Remote Desktop", id: 1295203466
+mas "Keka", id: 470158793
+mas "Magnet", id: 441258766
 mas "Notability", id: 360593530
 mas "PDF Squeezer", id: 1502111349
 mas "Slack", id: 803453959
