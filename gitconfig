@@ -4,3 +4,5 @@
 #        path = ~/.git-personal.conf
 [includeIf "gitdir:~/work/"]
         path = ~/.git-work.conf
+[init]
+	defaultBranch = main

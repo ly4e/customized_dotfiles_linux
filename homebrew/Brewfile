@@ -4,18 +4,19 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+tap "jesseduffield/horcrux"
 # Core application library for C
 brew "glib"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Icons for the GNOME project
 brew "adwaita-icon-theme"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Linux/OSX/FreeBSD resource monitor
 brew "bpytop"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -78,6 +79,8 @@ brew "nim"
 brew "packer"
 # Command-line player for https://pandora.com
 brew "pianobar"
+# Tool for managing OCI containers and pods
+brew "podman"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Interpreted, interactive, object-oriented programming language
@@ -88,14 +91,21 @@ brew "terraform"
 brew "tldr"
 # Terminal multiplexer
 brew "tmux"
+# Color-based alternative to figlet (uses libcaca)
+brew "toilet"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
+# A program for splitting your files into encrypted fragments
+brew "jesseduffield/horcrux/horcrux"
+# Application launcher and productivity software
+cask "alfred"
 # Voice and text chat software
 cask "discord"
 # Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
+# Developer targeted fonts with a high number of glyphs
 cask "font-fira-mono-nerd-font"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
@@ -117,7 +127,8 @@ cask "sublime-text"
 cask "vagrant"
 # Gives Vagrant VMware plugin access to various VMware functionalities
 cask "vagrant-vmware-utility"
-mas "Alfred", id: 405843582
+# Rust-based terminal
+cask "warp"
 mas "Bear", id: 1091189122
 mas "Bitwarden", id: 1352778147
 mas "Cardhop", id: 1290358394
